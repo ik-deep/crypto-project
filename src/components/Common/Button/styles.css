@@ -6,6 +6,9 @@
     font-weight: 600;
     cursor: pointer;
     border: 2px solid var(--blue);
+    text-align: center;
+    min-width: 100px;
+    text-transform: capitalize;
 }
 
 .btn:hover{
@@ -22,6 +25,9 @@
     border-radius: 3rem;
     font-weight: 600;
     cursor: pointer;
+    text-align: center;
+    min-width: 100px;
+    text-transform: capitalize;
 }
 
 .outlined-btn:hover{

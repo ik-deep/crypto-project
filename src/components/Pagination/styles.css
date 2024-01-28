@@ -1,0 +1,20 @@
+.pagination-component{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+.css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root {
+  min-width: 5rem !important;
+}
+
+@media only screen and (max-width:800px){
+    .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root {
+        min-width: 2rem !important;
+      }
+}
+
+.css-uy1rco-MuiPagination-root .MuiPaginationItem-text:hover{
+    background-color: var(--blue);
+    transition: all 0.3s;
+}

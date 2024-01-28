@@ -6,11 +6,14 @@
 --blue:#6a63f0;
 --grey:#888;
 --darkgrey:#1b1b1b;
---green:#61c96f;
+--green:hsl(128, 49%, 58%);
 --red:#f94141;
 
 }
 
+html{
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -20,6 +23,7 @@ body {
  color: var(--white);
  font-family: "Inter", sans-serif;
 }
+
 
 ::selection {
   color: var(--white);
@@ -51,3 +55,10 @@ a{
   text-decoration: none !important;
 }
 
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+
+}

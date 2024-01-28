@@ -1,14 +1,20 @@
 import {React} from 'react'
-import Header from './components/Common/Header';
-import Footer from './components/Common/Footer';
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+import HomePage from './pages/Home';
+import DashboardPage from './pages/Dashboard';
+
 
 
 function App() {
   return (
-    <div>
-  <Header/>
-  <Footer/>
-    </div>
+    <Router>
+      <Routes>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/dashboard" element={<DashboardPage/>}/>
+          {/* <Route path="/coin/:id" element={<CoinPage/>}/>
+          <Route path="/watchlist" element={<WatchlistPage/>}/> */}
+      </Routes>
+    </Router>
   );
 }
 
