@@ -3,7 +3,7 @@ import "./styles.css"
 
 const Button = ({text,onClick,outlined}) => {
   return (
-    <div onClick={()=> onClick()} className={outlined?"outlined-btn":"btn"}>
+    <div  className={outlined?"outlined-btn":"btn"}>
         {text}
     </div>
   )
