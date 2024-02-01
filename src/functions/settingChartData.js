@@ -1,7 +1,8 @@
 import { convertDate } from "./convertDate";
 
-export const settingChartData=(setChartData,prices)=>{
+export const settingChartData=(setChartData,prices,chartType)=>{
     let labelData = prices?.map((item)=> convertDate(item[0]));
+    // console.log(chartType==="Stepped Line Chart");
     setChartData({
         labels:labelData,
         datasets:[{
@@ -11,7 +12,8 @@ export const settingChartData=(setChartData,prices)=>{
           fill:true,
           tension:0.25,
           backgroundColor: "rgbs(58,128,0.1)",
-          pointRadius:0
+          pointRadius:0,
+          stepped: chartType==="Stepped Line Chart"?true:false,
         }]
       })
     
