@@ -3,12 +3,13 @@ import { Bar, Line } from "react-chartjs-2";
 import "./styles.css";
 import { convertNumbers } from "../../../functions/convertNumbers";
 
-const ChartConfig = ({ chartData, priceType, multiAxis, chartType }) => {
-  // console.log(chartData);
-  const options = {
+const ChartConfig = ({ chartData, chartType, priceType, multiAxis }) => {
+  console.log(chartData);
+  const options = 
+    multiAxis?{
     plugins: {
       legend: {
-        display: multiAxis ? true : false,
+        display: true,
       },
       title: {
         display: true,
@@ -23,8 +24,25 @@ const ChartConfig = ({ chartData, priceType, multiAxis, chartType }) => {
       axis: chartType == "Stepped Line Chart" ? "x" : "",
     },
    
-    scales:{
-      y:{
+     scales:{
+      crypto1:{
+        type:'linear',
+        display:true,
+        position:'left',
+        ticks:{
+          callback: function (value,index,ticks){
+            if(priceType==="prices"){
+              return "$"+ value.toLocaleString();
+            }else{
+              return "$"+convertNumbers(value);
+            }
+          }
+        }
+      },
+      crypto2:{
+        type:'linear',
+        display:true,
+        position:'right',
         ticks:{
           callback: function (value,index,ticks){
             if(priceType==="prices"){
@@ -37,6 +55,40 @@ const ChartConfig = ({ chartData, priceType, multiAxis, chartType }) => {
       }
     }
 
+  }:{
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: chartType,
+      },
+    },
+
+    responsive: true,
+    interaction: {
+      mode: "index",
+      intersect: false,
+      axis: chartType == "Stepped Line Chart" ? "x" : "",
+    },
+    scales:{
+      crypto1:{
+        type:'linear',
+        display:true,
+        position:'left',
+        ticks:{
+          callback: function (value,index,ticks){
+            if(priceType==="prices"){
+              return "$"+ value.toLocaleString();
+            }else{
+              return "$"+convertNumbers(value);
+            }
+          }
+        }
+      },
+    }
+   
   };
 
   let horizontalBarChartOptions = {

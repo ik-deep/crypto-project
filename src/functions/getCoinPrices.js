@@ -9,6 +9,6 @@ export const getCoinPrices=(id, days,priceType)=>{
     .catch((error)=>{
         console.log("ERROR>>>",error);
     });
-
-    return prices;
+if(prices)  return prices;
+   
 }

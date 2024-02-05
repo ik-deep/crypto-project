@@ -1,0 +1,10 @@
+/* .css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+    max-height: calc(100%-300px) !important;
+} */
+.coin-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 1.5rem;
+}

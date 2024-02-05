@@ -22,7 +22,7 @@ const DashboardPage = () => {
   const getData =async () =>{
     setIsLoading(true)
     const myCoins =await get100Coins()
-    console.log(myCoins)
+    // console.log(myCoins)
     if(myCoins){
       setCoins(myCoins);
       SetPaginatedCoins(myCoins.slice(0, 10));
@@ -40,7 +40,7 @@ const DashboardPage = () => {
  const onSearchChange = (e) =>{
    setSearch(e.target.value); 
  }
-console.log(coins);
+// console.log(coins);
  var filteredCoin = coins && coins.filter(
    (item) =>
     item.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -56,9 +56,9 @@ console.log(coins);
       <BackToTop/>
       <Search search={search} onSearchChange={onSearchChange}/>
       <TabsComponent coins={search?filteredCoin:paginatedCoins}/>
-      {!search &&    <PaginationComponent page={page} handlePageChange={handlePageChange}/>}
-  
-      </div>)}
+      {!search && <PaginationComponent page={page} handlePageChange={handlePageChange}/>}
+      </div>
+      )}
       </div>
   )
 }

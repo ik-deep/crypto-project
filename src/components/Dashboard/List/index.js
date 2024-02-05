@@ -6,7 +6,7 @@ import { convertNumbers } from "../../../functions/convertNumbers";
 import { Link } from "react-router-dom";
 
 function List({ coin }) {
-  //   console.log(coin);
+    // console.log("coinpage",coin);
   return (
     <Link to={`/coin/${coin.id}`}>
     <tr className="list-row">

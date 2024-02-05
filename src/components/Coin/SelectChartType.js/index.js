@@ -25,9 +25,7 @@ export default function SelectChartType({ chartType, handleChartChange }) {
         value={chartType}
         onChange={handleChartChange}
       >
-        <MenuItem value={"Line Chart"} selected  className='toggle-btn'>
-          Line Chart
-        </MenuItem>
+        <MenuItem value={"Line Chart"}  className='toggle-btn'> Line Chart</MenuItem>
         <MenuItem value={"Stepped Line Chart"} className='toggle-btn'>Stepped Line Chart</MenuItem>
         <MenuItem value={"Vertical Bar Chart"} className='toggle-btn'>Vertical Bar Chart</MenuItem>
         <MenuItem value={"Horizontal Bar Chart"} className='toggle-btn'>Horizontal Bar Chart</MenuItem>

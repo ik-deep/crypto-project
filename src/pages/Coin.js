@@ -27,7 +27,7 @@ const CoinPage = () => {
     if (id) {
       getData();
     }
-  }, [id, chartType]);
+  }, []);
 
   async function getData() {
     const data = await getCoinData(id, setIsLoading);
@@ -35,7 +35,7 @@ const CoinPage = () => {
       coinObject(setCoinData, data);
       const prices = await getCoinPrices(id, days,priceType);
       if (prices && prices.length > 0) {
-        settingChartData(setChartData, prices, chartType);
+        settingChartData(setChartData, prices,'', chartType);
         setIsLoading(false);
       }
     }
@@ -46,17 +46,16 @@ const CoinPage = () => {
     setDays(event.target.value);
     const prices = await getCoinPrices(id, event.target.value,priceType);
     if (prices && prices.length > 0) {
-      settingChartData(setChartData, prices, chartType);
+      settingChartData(setChartData, prices,'', chartType);
       setIsLoading(false);
     }
   };
   const handleChartChange = async (event) => {
     setChartType(event.target.value);
-    setIsLoading(true);
     const prices = await getCoinPrices(id, days,priceType);
     if (prices && prices.length > 0) {
-      settingChartData(setChartData, prices, event.target.value);
-      setIsLoading(false);
+      settingChartData(setChartData, prices,'', event.target.value);
+      
     }
   };
  
@@ -64,9 +63,9 @@ const CoinPage = () => {
   const handlePriceTypeChange =async (event,newType)=>{
       setIsLoading(true);
       setPriceType(newType);
-      const prices = await getCoinPrices(id, days,newType);
+      const prices = await getCoinPrices(id, days,event.target.value);
       if (prices && prices.length > 0) {
-        settingChartData(setChartData, prices, chartType);
+        settingChartData(setChartData, prices,'', chartType);
         setIsLoading(false);
       }
   }
@@ -92,7 +91,7 @@ const CoinPage = () => {
               chartType={chartType}
               handleChartChange={handleChartChange}
             />
-            <ChartConfig chartData={chartData} chartType={chartType} priceType={priceType}/>
+            <ChartConfig chartData={chartData} chartType={chartType} priceType={priceType} multiAxis={false}/>
           </div>
           <CoinInfo heading={coinData.name} desc={coinData.desc} />
         </>
