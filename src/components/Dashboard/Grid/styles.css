@@ -4,6 +4,8 @@
     background-color: var(--darkgrey);
     border: 2px solid var(--darkgrey) ;
     border-radius: 0.75rem;
+    position: relative;
+    min-width: 270px;
 }
 .grid-container:hover{
     border-color: var(--green);
@@ -111,4 +113,30 @@
 
  .info-container{
     margin-left: 1.5rem;
+ }
+ .watch-icon:hover{
+    background-color: var(--green);
+   color: var(--white) !important;
+   transition: all 0.3s;
+   border-radius: 10px;
+ }
+ .watch-icon{
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    cursor: pointer;
+    color: var(--green);
+ }
+ .watch-icon-red{
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    cursor: pointer;
+    color: var(--red);
+ }
+ .watch-icon-red:hover{
+    background-color: var(--red);
+    color: var(--white) !important;
+    transition: all 0.3s;
+    border-radius: 10px;
  }

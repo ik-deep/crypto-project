@@ -11,7 +11,7 @@ import List from "../List";
 
 export default function TabsComponent({coins}) {
   const [value, setValue] = useState("grid");
-
+  let localStoredData = JSON.parse(localStorage.getItem("watchData"))|| [];
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -45,6 +45,7 @@ export default function TabsComponent({coins}) {
           <div className="grid-flex">
             {
               coins && coins.map((coin,index)=>{
+                coin["watchData"]=localStoredData.length>0&&localStoredData.indexOf(coin.id)!==-1?true:false;
                 return <Grid coin={coin} key={index}/>
               })
             }
@@ -53,9 +54,10 @@ export default function TabsComponent({coins}) {
         <TabPanel value="list">
          <table className="list-table">
           {
-            coins && coins.map((item,i)=>{
+            coins && coins.map((coin,i)=>{
+                coin["watchData"]=localStoredData.length>0&&localStoredData.indexOf(coin.id)!==-1?true:false;
               return (
-                <List coin={item} key={i}/>
+                <List coin={coin} key={i}/>
               )
             }
             )

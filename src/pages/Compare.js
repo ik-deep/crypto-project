@@ -118,7 +118,7 @@ const ComparePage = () => {
               crypto2={crypto2}
               handleCoinChange={handleCoinChange}
             />
-            <SelectDays days={days} handleDaysChange={handleDaysChange} />
+           
           </div>
           <div className="grey-wrapper">
             <List coin={crypto1Data} />
@@ -126,18 +126,18 @@ const ComparePage = () => {
           <div className="grey-wrapper">
             <List coin={crypto2Data} />
           </div>
-          <div className="coin-days-flex">
-            <TogglePriceType
-              priceType={priceType}
-              handlePriceTypeChange={handlePriceTypeChange}
-            />
-          </div>
 
           <div className="grey-wrapper chart-widget">
             {/* <SelectChartType
               chartType={chartType}
               handleChartChange={handleChartChange}
             /> */}
+             <SelectDays days={days} handleDaysChange={handleDaysChange} />
+                <TogglePriceType
+              priceType={priceType}
+              handlePriceTypeChange={handlePriceTypeChange}
+            />
+            
             <ChartConfig
               chartData={chartData}
               priceType={priceType}

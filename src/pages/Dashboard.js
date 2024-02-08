@@ -49,15 +49,16 @@ const DashboardPage = () => {
 
 
   return (
+    
     <div>
-      {isLoading?(<Loader/>):
-      (  <div>
       <Header/>
-      <BackToTop/>
+      {isLoading?(<Loader/>):
+      (<>
+        <BackToTop/>
       <Search search={search} onSearchChange={onSearchChange}/>
       <TabsComponent coins={search?filteredCoin:paginatedCoins}/>
       {!search && <PaginationComponent page={page} handlePageChange={handlePageChange}/>}
-      </div>
+      </>
       )}
       </div>
   )

@@ -4,7 +4,7 @@ export const settingChartData = (setChartData, prices1, prices2, chartType) => {
   let labelData = prices1?.map((item) => convertDate(item[0]));
   // console.log(chartType==="Stepped Line Chart");
   if (prices1!==''&&prices2!=='') {
-    // console.log(prices1,prices2)
+    console.log(prices1,prices2)
     setChartData({
       labels: labelData,
       datasets: [
