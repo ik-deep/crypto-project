@@ -6,13 +6,14 @@ import "./styles.css";
 export default function SelectChartType({ chartType, handleChartChange }) {
   return (
     <div className="select-days">
-      <p>Select Chart Type</p>
+      <p>Chart Type</p>
       <Select
         sx={{
           height: "2.5rem",
           color: "var(--white)",
           "& .MuiOutlinedInput-notchedOutline": {
             borderColor: "var(--white)",
+            maxwidth: "126px",
           },
           "& :hover": {
             "&& fieldSet": {

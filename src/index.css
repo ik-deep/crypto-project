@@ -111,3 +111,16 @@ flex-wrap: wrap;
   position: relative;
   top: 10vh;
 }
+
+.chart-box{
+  display: flex;
+  justify-content: center;
+}
+.filter-options{
+  margin-top: 5rem;
+  width: 28%;
+}
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  max-width: 126px !important;
+  min-width: 94px !important;
+}

@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <div className='navbar'>
        <h1 className='logo'>
-        CryptoTracker<span style={{color:"var(--blue)"}}>.</span>
+        Crypto<span style={{color:"var(--blue)"}}>Tracker</span><span style={{color:"var(--red)"}}>.</span><span style={{color:"yellow"}}>.</span><span style={{color:"var(--green)"}}>.</span>
        </h1>
        <div className='links'>
         <Link to='/'>

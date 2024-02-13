@@ -33,9 +33,9 @@ const CoinPage = () => {
     const data = await getCoinData(id, setIsLoading);
     if (data) {
       coinObject(setCoinData, data);
-      const prices = await getCoinPrices(id, days,priceType);
+      const prices = await getCoinPrices(id, days, priceType);
       if (prices && prices.length > 0) {
-        settingChartData(setChartData, prices,'', chartType);
+        settingChartData(setChartData, prices, "", chartType);
         setIsLoading(false);
       }
     }
@@ -44,31 +44,29 @@ const CoinPage = () => {
   const handleDaysChange = async (event) => {
     setIsLoading(true);
     setDays(event.target.value);
-    const prices = await getCoinPrices(id, event.target.value,priceType);
+    const prices = await getCoinPrices(id, event.target.value, priceType);
     if (prices && prices.length > 0) {
-      settingChartData(setChartData, prices,'', chartType);
+      settingChartData(setChartData, prices, "", chartType);
       setIsLoading(false);
     }
   };
   const handleChartChange = async (event) => {
     setChartType(event.target.value);
-    const prices = await getCoinPrices(id, days,priceType);
+    const prices = await getCoinPrices(id, days, priceType);
     if (prices && prices.length > 0) {
-      settingChartData(setChartData, prices,'', event.target.value);
-      
+      settingChartData(setChartData, prices, "", event.target.value);
     }
   };
- 
 
-  const handlePriceTypeChange =async (event,newType)=>{
-      setIsLoading(true);
-      setPriceType(newType);
-      const prices = await getCoinPrices(id, days,event.target.value);
-      if (prices && prices.length > 0) {
-        settingChartData(setChartData, prices,'', chartType);
-        setIsLoading(false);
-      }
-  }
+  const handlePriceTypeChange = async (event, newType) => {
+    setIsLoading(true);
+    setPriceType(newType);
+    const prices = await getCoinPrices(id, days, event.target.value);
+    if (prices && prices.length > 0) {
+      settingChartData(setChartData, prices, "", chartType);
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div>
@@ -80,21 +78,32 @@ const CoinPage = () => {
           <div className="grey-wrapper">
             <List coin={coinData} />
           </div>
-          <div className="grey-wrapper-chart-type">
-            <SelectDays days={days} handleDaysChange={handleDaysChange} />
-            <TogglePriceType priceType={priceType} handlePriceTypeChange={handlePriceTypeChange}/>
+          <div className="grey-wrapper chart-box">
           
-          </div>
-      
-          <div className="grey-wrapper">
-          <SelectChartType
+        <div className="grey-wrapper">
+            <ChartConfig
+              chartData={chartData}
               chartType={chartType}
-              handleChartChange={handleChartChange}
+              priceType={priceType}
+              multiAxis={false}
             />
-            <ChartConfig chartData={chartData} chartType={chartType} priceType={priceType} multiAxis={false}/>
+   
+            </div>
+         
+            <div className="filter-options">
+              <TogglePriceType
+                priceType={priceType}
+                handlePriceTypeChange={handlePriceTypeChange}
+              />
+              <SelectDays days={days} handleDaysChange={handleDaysChange} />
+              <SelectChartType
+                chartType={chartType}
+                handleChartChange={handleChartChange}
+              />
+            </div>
           </div>
           <CoinInfo heading={coinData.name} desc={coinData.desc} />
-        </>
+          </>
       )}
     </div>
   );

@@ -9,6 +9,7 @@
     text-align: center;
     min-width: 100px;
     text-transform: capitalize;
+    box-shadow: rgba(56, 59, 228, 0.4) 5px 5px, rgba(101, 42, 211, 0.3) 10px 10px, rgba(106, 45, 190, 0.2) 15px 15px, rgba(49, 46, 240, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
 }
 
 .btn:hover{
@@ -28,6 +29,7 @@
     text-align: center;
     min-width: 100px;
     text-transform: capitalize;
+    box-shadow: rgba(56, 59, 228, 0.4) 5px 5px, rgba(101, 42, 211, 0.3) 10px 10px, rgba(106, 45, 190, 0.2) 15px 15px, rgba(49, 46, 240, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
 }
 
 .outlined-btn:hover{

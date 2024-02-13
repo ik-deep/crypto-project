@@ -2,6 +2,7 @@ import React from "react";
 import { Bar, Line } from "react-chartjs-2";
 import "./styles.css";
 import { convertNumbers } from "../../../functions/convertNumbers";
+import Loader from "../../Common/Loader";
 
 const ChartConfig = ({ chartData, chartType, priceType, multiAxis }) => {
   console.log(chartData);
@@ -21,7 +22,7 @@ const ChartConfig = ({ chartData, chartType, priceType, multiAxis }) => {
     interaction: {
       mode: "index",
       intersect: false,
-      axis: chartType == "Stepped Line Chart" ? "x" : "",
+      axis: chartType === "Stepped Line Chart" ? "x" : "",
     },
    
      scales:{
@@ -70,7 +71,7 @@ const ChartConfig = ({ chartData, chartType, priceType, multiAxis }) => {
     interaction: {
       mode: "index",
       intersect: false,
-      axis: chartType == "Stepped Line Chart" ? "x" : "",
+      axis: chartType === "Stepped Line Chart" ? "x" : "",
     },
     scales:{
       crypto1:{
