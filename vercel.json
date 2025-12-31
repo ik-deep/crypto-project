@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "app/api/**/*.js": {
+      "runtime": "nodejs24.x"
+    }
+  },
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
+  "framework": "create-react-app"
+}
