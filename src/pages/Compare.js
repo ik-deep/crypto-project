@@ -12,6 +12,7 @@ import ChartConfig from "../components/Coin/ChartConfig";
 import { settingChartData } from "../functions/settingChartData";
 import TogglePriceType from "../components/Coin/PriceType";
 import SelectChartType from "../components/Coin/SelectChartType.js";
+import "./comparePage.css";
 
 const ComparePage = () => {
   const [crypto1, setCrypto1] = useState("bitcoin");
@@ -71,27 +72,14 @@ const ComparePage = () => {
   const handleDaysChange = async (event) => {
     setIsLoading(true);
     setDays(event.target.value);
-    console.log(crypto1, event.target.value, priceType);
-    console.log(crypto2, event.target.value, priceType);
     const prices1 = await getCoinPrices(crypto1, event.target.value, priceType);
     const prices2 = await getCoinPrices(crypto2, event.target.value, priceType);
 
-    console.log(prices1, prices2);
     if (prices1?.length > 0 && prices2?.length > 0) {
       settingChartData(setChartData, prices1, prices2, chartType);
       setIsLoading(false);
     }
   };
-  // const handleChartChange = async (event) => {
-  //   setChartType(event.target.value);
-  //   setIsLoading(true);
-  //   const prices1 = await getCoinPrices(crypto1, days, priceType);
-  //   const prices2 = await getCoinPrices(crypto2, days, priceType);
-  //   if (prices1.length > 0 && prices2.length > 0) {
-  //     settingChartData(setChartData, prices1, prices2, priceType);
-  //     setIsLoading(false);
-  //   }
-  // };
 
   const handlePriceTypeChange = async (event, newType) => {
     setIsLoading(true);
@@ -104,49 +92,100 @@ const ComparePage = () => {
     }
   };
 
-  // console.log("crypto1",crypto1Data)
   return (
-    <div>
+    <div className="compare-page">
       <Header />
       {isLoading ? (
         <Loader />
       ) : (
-        <>
-          <div className="coin-days-flex">
-            <SelectCoins
-              crypto1={crypto1}
-              crypto2={crypto2}
-              handleCoinChange={handleCoinChange}
-            />
-           
-          </div>
-          <div className="grey-wrapper">
-            <List coin={crypto1Data} />
-          </div>
-          <div className="grey-wrapper">
-            <List coin={crypto2Data} />
-          </div>
+        <div className="compare-content">
+          {/* Page Header */}
+          <section className="compare-header">
+            <h1 className="page-title">Compare Cryptocurrencies</h1>
+            <p className="page-subtitle">Analyze and compare two cryptocurrencies side by side</p>
+          </section>
 
-          <div className="grey-wrapper chart-widget">
-            {/* <SelectChartType
-              chartType={chartType}
-              handleChartChange={handleChartChange}
-            /> */}
-             <SelectDays days={days} handleDaysChange={handleDaysChange} />
-                <TogglePriceType
-              priceType={priceType}
-              handlePriceTypeChange={handlePriceTypeChange}
-            />
-            
-            <ChartConfig
-              chartData={chartData}
-              priceType={priceType}
-              multiAxis={true}
-            />
-          </div>
-          <CoinInfo heading={crypto1Data.name} desc={crypto1Data.desc} />
-          <CoinInfo heading={crypto2Data.name} desc={crypto2Data.desc} />
-        </>
+          {/* Coin Selection */}
+          <section className="coin-selection">
+            <div className="selection-header">
+              <h2 className="section-title">Select Coins to Compare</h2>
+            </div>
+            <div className="selection-wrapper">
+              <SelectCoins
+                crypto1={crypto1}
+                crypto2={crypto2}
+                handleCoinChange={handleCoinChange}
+              />
+            </div>
+          </section>
+
+          {/* Coin Comparison */}
+          <section className="coins-comparison">
+            <div className="section-header">
+              <h2 className="section-title">Market Overview</h2>
+              <p className="section-subtitle">Current market data and statistics</p>
+            </div>
+            <div className="comparison-grid">
+              <div className="coin-card">
+                <div className="coin-label">Coin 1</div>
+                <List coin={crypto1Data} />
+              </div>
+              <div className="coin-card">
+                <div className="coin-label">Coin 2</div>
+                <List coin={crypto2Data} />
+              </div>
+            </div>
+          </section>
+
+          {/* Chart Analysis */}
+          <section className="chart-analysis">
+            <div className="section-header">
+              <h2 className="section-title">Price Comparison Chart</h2>
+              <p className="section-subtitle">Interactive price analysis and trends</p>
+            </div>
+            <div className="chart-container">
+              <div className="chart-wrapper">
+                <ChartConfig
+                  chartData={chartData}
+                  priceType={priceType}
+                  multiAxis={true}
+                />
+              </div>
+              <div className="chart-controls">
+                <div className="controls-header">
+                  <h3>Chart Settings</h3>
+                </div>
+                <div className="control-group">
+                  <label>Price Type</label>
+                  <TogglePriceType
+                    priceType={priceType}
+                    handlePriceTypeChange={handlePriceTypeChange}
+                  />
+                </div>
+                <div className="control-group">
+                  <label>Time Period</label>
+                  <SelectDays days={days} handleDaysChange={handleDaysChange} />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Coin Information */}
+          <section className="coins-info">
+            <div className="section-header">
+              <h2 className="section-title">Detailed Information</h2>
+              <p className="section-subtitle">Learn more about these cryptocurrencies</p>
+            </div>
+            <div className="info-grid">
+              <div className="info-card">
+                <CoinInfo heading={crypto1Data.name} desc={crypto1Data.desc} />
+              </div>
+              <div className="info-card">
+                <CoinInfo heading={crypto2Data.name} desc={crypto2Data.desc} />
+              </div>
+            </div>
+          </section>
+        </div>
       )}
     </div>
   );

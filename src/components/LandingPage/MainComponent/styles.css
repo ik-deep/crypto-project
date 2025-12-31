@@ -1,117 +1,281 @@
+.hero-section {
+    position: relative;
+    height: 87vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+    z-index: -1;
+}
+
+.hero-background::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+.hero-background::after {
+    content: '';
+    position: absolute;
+    bottom: 20%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(147, 51, 234, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+}
+
 .flex-info{
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 0.5rem 4rem;
+    align-items: center;
+    padding: 2rem 4rem;
+    width: 100%;
+    max-width: 1400px;
+    position: relative;
+    z-index: 1;
+}
+
+.left-component {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--blue), #8b5cf6);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
 .track-crypto-heading,.real-time-heading{
-    font-size:7rem;
+    font-size: 4.5rem;
     margin: 0;
+    line-height: 1.1;
+    font-weight: 800;
 }
 
 .track-crypto-heading{
     color: var(--white);
-    -webkit-text-stroke-width: 3px;
-    -webkit-text-stroke-color: var(--white);
+    background: linear-gradient(135deg, var(--white) 0%, #e5e7eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
 }
 
-.track-crypto-heading:hover{
-     color: var(--black);
-     -webkit-text-stroke-color: var(--white);
-     transition: all 0.3s;
+.real-time-heading{
+    background: linear-gradient(135deg, var(--blue) 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+}
 
+.info-text{
+    font-size: 1.2rem;
+    color: var(--grey);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+.features-list {
+    margin-bottom: 2.5rem;
+}
+
+.feature-item {
+    color: var(--grey);
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.feature-item::before {
+    content: '✓';
+    color: var(--blue);
+    font-weight: bold;
+    margin-right: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.btn-flex{
+    display: flex;
+    justify-content: start;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.phone-container{
+    flex: 1;
+    position: relative;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iphone{
+    position: relative;
+    z-index: 99;
+    max-width: 350px;
+    width: 100%;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+}
+
+.gradient{
+    position: absolute;
+    max-width: 300px;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.floating-cards {
+    position: absolute;
+    z-index: 100;
+}
+
+.price-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    min-width: 120px;
+}
+
+.price-card:first-child {
+    top: -2rem;
+    left: -3rem;
+}
+
+.card-2 {
+    bottom: -2rem;
+    right: -3rem;
+}
+
+.crypto-symbol {
+    font-weight: 700;
+    color: var(--white);
+    font-size: 0.9rem;
+}
+
+.crypto-price {
+    font-weight: 600;
+    color: var(--white);
+    font-size: 1.1rem;
+}
+
+.crypto-change {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.crypto-change.positive {
+    color: #10b981;
+}
+
+.crypto-change.negative {
+    color: #ef4444;
+}
+
+@media only screen and (max-width:1250px){
+    .track-crypto-heading,.real-time-heading{
+        font-size: 3.5rem;
     }
-
-    .real-time-heading{
-        color: var(--blue);
+    .flex-info {
+        padding: 2rem 2rem;
     }
+}
 
-    .info-text{
-       font-size:1rem ;
-       color: var(--grey);
+@media only screen and (max-width:1000px){
+    .iphone{ 
+        max-width: 280px;
     }
+    .gradient{
+        max-width: 240px;
+    }
+    .price-card {
+        padding: 0.8rem 1rem;
+        min-width: 100px;
+    }
+}
 
-    .btn-flex{
-        display: flex;
-        justify-content: start;
-        gap: 1.5rem;
-        align-items: center;
+@media only screen and (max-width:800px){
+    .flex-info{
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .left-component {
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+    
+    .phone-container{
+        width: 100%;
         margin-top: 2rem;
     }
-
-    .phone-container{
-        width:50%;
-        position: relative;
-        padding:1rem ;
+    
+    .track-crypto-heading,.real-time-heading{
+        font-size: 2.5rem;
     }
-
-    .iphone{
-        position: absolute;
-        z-index: 99;
-        min-width: 300px;
-        width: 50%;
-        right: 5rem;
-        top:1rem;
-    }
-
-    .gradient{
-        position: absolute;
-        min-width: 250px;
-        width: 40%;
-        right: 4rem;
-        top:5rem
-    }
-
-    @media only screen and (max-width:1250px){
-        .track-crypto-heading,.real-time-heading{
-         font-size: 5rem;
-         margin: 0;
-        }
-    }
-
-    @media only screen and (max-width:1000px){
-        .iphone{ 
-            min-width: 250px;
-            width: 50%;
-        }
-        .gradient{
-            min-width: 200px;
-            top:6rem;
-        }
-    }
-
-    @media only screen and (max-width:800px){
-       .flex-info{
-        flex-direction: column;
-       }
-       .phone-container{
-        display: block;
-        margin: auto;
-        margin-top: 5rem;
-       }
-       .iphone{
-        left: -2rem;
-       }
-       .gradient{
-        left: 25%;
-       }
-
-       .track-crypto-heading,.real-time-heading{
-        font-size: 3rem;
+    
+    .info-text{
         text-align: center;
-       }
-
-       .left-component{
-        width: 100%;
-       }
-       .info-text{
-        text-align: center;
-       }
-       .btn-flex{
+        font-size: 1.1rem;
+    }
+    
+    .btn-flex{
         justify-content: center;
-       }
-       .track-crypto-heading{
-         -webkit-text-stroke-width: 1px;
-       }
+        flex-wrap: wrap;
     }
+    
+    .features-list {
+        text-align: left;
+        max-width: 300px;
+        margin: 0 auto 2rem;
+    }
+    
+    .price-card:first-child {
+        top: -1rem;
+        left: -2rem;
+    }
+    
+    .card-2 {
+        bottom: -1rem;
+        right: -2rem;
+    }
+}
