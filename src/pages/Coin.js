@@ -132,11 +132,11 @@ const CoinPage = () => {
           {/* Coin Information Section */}
           <section className="coin-info-section">
             <div className="section-header">
-              <h2 className="section-title">About {coinData.name}</h2>
+              <h2 className="section-title">About {coinData?.name || 'Cryptocurrency'}</h2>
               <p className="section-subtitle">Learn more about this cryptocurrency</p>
             </div>
             <div className="info-wrapper">
-              <CoinInfo heading={coinData.name} desc={coinData.desc} />
+              <CoinInfo heading={coinData?.name} desc={coinData?.desc} />
             </div>
           </section>
         </div>

@@ -27,7 +27,7 @@ const WatchlistPage = () => {
       const myCoins = await get100Coins();
       if (myCoins) {
         let watchListData = myCoins.filter((item) => {
-          return watchedCoins && watchedCoins.indexOf(item.id) !== -1;
+          return watchedCoins && Array.isArray(watchedCoins) && watchedCoins.indexOf(item.id) !== -1;
         });
         setCoins(watchListData);
         SetPaginatedCoins(watchListData.slice(0, 10));
