@@ -6,6 +6,7 @@ import PaginationComponent from '../components/Pagination'
 import Loader from '../components/Common/Loader'
 import BackToTop from '../components/Common/BackToTop'
 import { get100Coins } from '../functions/get100Coins'
+import { useNavigate } from 'react-router-dom'
 
 const DashboardPage = () => {
   const [coins,setCoins] = useState('');
@@ -13,6 +14,8 @@ const DashboardPage = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [paginatedCoins, SetPaginatedCoins] = useState([]);
   const [page, setPage] = useState(1);
+  const [serverError, setServerError] = useState(false);
+  const navigate = useNavigate();
  
 
   useEffect(() => {
@@ -21,14 +24,20 @@ const DashboardPage = () => {
 
   const getData =async () =>{
     setIsLoading(true)
-    const myCoins =await get100Coins()
-    // console.log(myCoins)
-    if(myCoins){
-      setCoins(myCoins);
-      SetPaginatedCoins(myCoins.slice(0, 10));
-      setIsLoading(false)
+    try {
+      const myCoins =await get100Coins()
+      if(myCoins){
+        setCoins(myCoins);
+        SetPaginatedCoins(myCoins.slice(0, 10));
+        setIsLoading(false)
+      }
+    } catch (error) {
+      if (error.message === 'SERVER_DOWN') {
+        setServerError(true);
+        setTimeout(() => navigate('/'), 3000);
+      }
+      setIsLoading(false);
     }
- 
   }
 
   const handlePageChange = (even, value) =>{
@@ -43,8 +52,8 @@ const DashboardPage = () => {
 // console.log(coins);
  var filteredCoin = coins && coins.filter(
    (item) =>
-    item.name.toLowerCase().includes(search.toLowerCase()) ||
-    item.symbol.toLowerCase().includes(search.toLowerCase())
+    (item.name && item.name.toLowerCase().includes(search.toLowerCase())) ||
+    (item.symbol && item.symbol.toLowerCase().includes(search.toLowerCase()))
    )
 
 
@@ -52,7 +61,11 @@ const DashboardPage = () => {
     
     <div>
       <Header/>
-      {isLoading?(<Loader/>):
+      {serverError ? (
+        <div style={{textAlign: 'center', padding: '50px'}}>
+          <h2>Server is down. Redirecting to home...</h2>
+        </div>
+      ) : isLoading?(<Loader/>):
       (<>
         <BackToTop/>
       <Search search={search} onSearchChange={onSearchChange}/>

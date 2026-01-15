@@ -43,7 +43,7 @@ const ComparePage = () => {
     if (data1 && data2) {
       const prices1 = await getCoinPrices(crypto1, days, priceType);
       const prices2 = await getCoinPrices(crypto2, days, priceType);
-      if (prices1.length > 0 && prices2.length > 0) {
+      if (prices1 && prices1.length > 0 && prices2 && prices2.length > 0) {
         settingChartData(setChartData, prices1, prices2, chartType);
         setIsLoading(false);
       }
@@ -63,7 +63,7 @@ const ComparePage = () => {
 
     const prices1 = await getCoinPrices(crypto1, days, priceType);
     const prices2 = await getCoinPrices(crypto2, days, priceType);
-    if (prices1.length > 0 && prices2.length > 0) {
+    if (prices1 && prices1.length > 0 && prices2 && prices2.length > 0) {
       settingChartData(setChartData, prices1, prices2, chartType);
       setIsLoading(false);
     }
@@ -86,7 +86,7 @@ const ComparePage = () => {
     setPriceType(newType);
     const prices1 = await getCoinPrices(crypto1, days, event.target.value);
     const prices2 = await getCoinPrices(crypto2, days, event.target.value);
-    if (prices1.length > 0 && prices2.length > 0) {
+    if (prices1 && prices1.length > 0 && prices2 && prices2.length > 0) {
       settingChartData(setChartData, prices1, prices2, chartType);
       setIsLoading(false);
     }

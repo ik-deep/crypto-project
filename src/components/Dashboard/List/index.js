@@ -84,7 +84,7 @@ function List({ coin }) {
                 : "var(--red)",
           }}
         >
-          ${coin.current_price.toLocaleString()}
+          ${coin.current_price ? coin.current_price.toLocaleString() : 'N/A'}
         </h3>
       </td>
       </Tooltip>
@@ -93,7 +93,7 @@ function List({ coin }) {
       <Tooltip title="Total Volume" placement="bottom">
         <td>
           <p className="total_valume td-right-align td-total-volume">
-            {coin.total_volume.toLocaleString()}
+            {coin.total_volume ? coin.total_volume.toLocaleString() : 'N/A'}
           </p>
         </td>
       </Tooltip>
@@ -102,7 +102,7 @@ function List({ coin }) {
       <Tooltip title="Market Cap" placement="bottom">
         <td  className="desktop-td-mkt">
           <p className="total_valume td-right-align">
-            ${coin.market_cap.toLocaleString()}
+            ${coin.market_cap ? coin.market_cap.toLocaleString() : 'N/A'}
           </p>
         </td>
       </Tooltip>

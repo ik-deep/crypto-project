@@ -1,4 +1,5 @@
 export const convertNumbers = (number)=>{
+   if (!number && number !== 0) return 'N/A';
    const numberWithCommas = number.toLocaleString();
    var arr = numberWithCommas.split(",");
    var numLength = arr.length;

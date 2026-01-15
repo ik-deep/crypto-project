@@ -8,7 +8,10 @@ export const get100Coins = ()=>{
     })
     .catch((error)=>{
       console.log("Error:",error);
-     
+      if (error.response && error.response.status === 429) {
+        throw new Error('SERVER_DOWN');
+      }
+      throw error;
     })
 
     return myCoins;

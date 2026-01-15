@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import "./styles.css";
 
 const CoinInfo = ({ heading, desc }) => {
+  const [flag, setFlag] = useState(false);
+  
+  if (!desc) return null;
+  
   const shortDesc =
     desc.slice(0, 350) +
     "...<br><p style='color:var(--grey);'>Read More...</p>";
   const longDesc =
     desc + "...<br><p style='color:var(--grey);'>Read Less...</p>";
-  const [flag, setFlag] = useState(false);
   return (
     <div className="grey-wrapper">
       <h2 className="coin-info-heading">{heading}</h2>

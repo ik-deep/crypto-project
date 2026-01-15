@@ -6,6 +6,7 @@ import PaginationComponent from "../components/Pagination";
 import Loader from "../components/Common/Loader";
 import BackToTop from "../components/Common/BackToTop";
 import { get100Coins } from "../functions/get100Coins";
+import { useNavigate } from "react-router-dom";
 
 const WatchlistPage = () => {
   const [coins, setCoins] = useState("");
@@ -13,6 +14,8 @@ const WatchlistPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [paginatedCoins, SetPaginatedCoins] = useState([]);
   const [page, setPage] = useState(1);
+  const [serverError, setServerError] = useState(false);
+  const navigate = useNavigate();
   let watchedCoins = JSON.parse(localStorage.getItem("watchData"));
   useEffect(() => {
     getData();
@@ -20,14 +23,21 @@ const WatchlistPage = () => {
 
   const getData = async () => {
     setIsLoading(true);
-    const myCoins = await get100Coins();
-    // console.log(myCoins)
-    if (myCoins) {
-      let watchListData = myCoins.filter((item) => {
-        return watchedCoins.indexOf(item.id) !== -1;
-      });
-      setCoins(watchListData);
-      SetPaginatedCoins(watchListData.slice(0, 10));
+    try {
+      const myCoins = await get100Coins();
+      if (myCoins) {
+        let watchListData = myCoins.filter((item) => {
+          return watchedCoins && watchedCoins.indexOf(item.id) !== -1;
+        });
+        setCoins(watchListData);
+        SetPaginatedCoins(watchListData.slice(0, 10));
+        setIsLoading(false);
+      }
+    } catch (error) {
+      if (error.message === 'SERVER_DOWN') {
+        setServerError(true);
+        setTimeout(() => navigate('/'), 3000);
+      }
       setIsLoading(false);
     }
   };
@@ -46,16 +56,20 @@ const WatchlistPage = () => {
     coins &&
     coins.filter(
       (item) =>
-        item.name.toLowerCase().includes(search.toLowerCase()) ||
-        item.symbol.toLowerCase().includes(search.toLowerCase())
+        (item.name && item.name.toLowerCase().includes(search.toLowerCase())) ||
+        (item.symbol && item.symbol.toLowerCase().includes(search.toLowerCase()))
     );
 
   return (
     <div>
       <Header />
-      {isLoading ? (
+      {serverError ? (
+        <div style={{textAlign: 'center', padding: '50px'}}>
+          <h2>Server is down. Redirecting to home...</h2>
+        </div>
+      ) : isLoading ? (
         <Loader />
-      ) : watchedCoins.length == 0 ? (
+      ) : !watchedCoins || watchedCoins.length == 0 ? (
         <h1 className="no-data-found">No item in the WatchList!</h1>
       ) : (
         <div>
@@ -63,12 +77,6 @@ const WatchlistPage = () => {
           <Search search={search} onSearchChange={onSearchChange} />
 
           <TabsComponent coins={search ? filteredCoin : paginatedCoins} />
-          {/* {!search && coins.length > 10 && (
-            <PaginationComponent
-              page={page}
-              handlePageChange={handlePageChange}
-            />
-          )} */}
         </div>
       )}
     </div>

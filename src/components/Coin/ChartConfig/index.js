@@ -1,11 +1,38 @@
 import React from "react";
 import { Bar, Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 import "./styles.css";
 import { convertNumbers } from "../../../functions/convertNumbers";
 import Loader from "../../Common/Loader";
 
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
 const ChartConfig = ({ chartData, chartType, priceType, multiAxis }) => {
   console.log(chartData);
+  
+  // Return null if chartData is not properly initialized
+  if (!chartData || !chartData.datasets || !Array.isArray(chartData.datasets)) {
+    return null;
+  }
   const options = 
     multiAxis?{
     plugins: {
