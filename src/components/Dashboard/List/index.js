@@ -32,7 +32,7 @@ function List({ coin }) {
      <Link to={`/coin/${coin.id}`}>
       <Tooltip title="Coin Logo" placement="bottom-start">
         <td className="td-image">
-          <img className="coin-logo" src={coin.image}></img>
+          <img className="coin-logo" src={coin.image} alt={coin.name} />
         </td>
       </Tooltip>
       </Link>

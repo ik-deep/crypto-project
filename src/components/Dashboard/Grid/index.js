@@ -44,7 +44,7 @@ const Grid = ({ coin }) => {
       </Tooltip>
       <Link to={`/coin/${coin.id}`}>
         <div className="info-flex">
-          <img src={coin.image} className="coin-logo" />
+          <img src={coin.image} className="coin-logo" alt={coin.name} />
           <div className="name-col">
             <p className="coin-symbol">{coin.symbol}</p>
             <p className="coin-name">{coin.name}</p>

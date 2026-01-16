@@ -13,7 +13,6 @@ import {
 } from 'chart.js';
 import "./styles.css";
 import { convertNumbers } from "../../../functions/convertNumbers";
-import Loader from "../../Common/Loader";
 
 ChartJS.register(
   CategoryScale,

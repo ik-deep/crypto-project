@@ -9,6 +9,7 @@ const SelectCoins = ({crypto1,crypto2,handleCoinChange}) => {
 
   useEffect(()=>{
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
 
