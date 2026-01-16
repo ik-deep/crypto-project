@@ -27,7 +27,8 @@ const CoinPage = () => {
     if (id) {
       getData();
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   async function getData() {
     const data = await getCoinData(id, setIsLoading);

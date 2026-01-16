@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Common/Header";
 import TabsComponent from "../components/Dashboard/Tabs";
 import Search from "../components/Dashboard/Search";
-import PaginationComponent from "../components/Pagination";
 import Loader from "../components/Common/Loader";
 import BackToTop from "../components/Common/BackToTop";
 import { get100Coins } from "../functions/get100Coins";
@@ -13,12 +12,12 @@ const WatchlistPage = () => {
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [paginatedCoins, SetPaginatedCoins] = useState([]);
-  const [page, setPage] = useState(1);
   const [serverError, setServerError] = useState(false);
   const navigate = useNavigate();
   let watchedCoins = JSON.parse(localStorage.getItem("watchData"));
   useEffect(() => {
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getData = async () => {
@@ -69,7 +68,7 @@ const WatchlistPage = () => {
         </div>
       ) : isLoading ? (
         <Loader />
-      ) : !watchedCoins || watchedCoins.length == 0 ? (
+      ) : !watchedCoins || watchedCoins.length === 0 ? (
         <h1 className="no-data-found">No item in the WatchList!</h1>
       ) : (
         <div>
