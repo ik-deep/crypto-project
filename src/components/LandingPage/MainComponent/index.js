@@ -77,7 +77,7 @@ const MainComponent = () => {
           animate={{opacity: 1, x: 0}}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <motion.img src={iphone} className='iphone'
+          <motion.img src={iphone} className='iphone' alt="Crypto tracking app"
             initial={{y: -10}}
             animate={{y: 10}}
             transition={{
@@ -87,7 +87,7 @@ const MainComponent = () => {
               repeat: Infinity
             }}
           />
-          <img src={gradient} className="gradient"/>
+          <img src={gradient} className="gradient" alt=""/>
           <div className='floating-cards'>
             <motion.div className='price-card'
               initial={{opacity: 0, scale: 0.8}}

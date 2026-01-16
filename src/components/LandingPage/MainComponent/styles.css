@@ -124,7 +124,7 @@
 
 .btn-flex{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 1.5rem;
     align-items: center;
 }
